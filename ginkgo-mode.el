@@ -171,7 +171,7 @@
   (shell-command "ginkgo bootstrap"))
 
 ;;;###autoload
-(defun gingko-generate ()
+(defun ginkgo-generate ()
   (interactive)
   (let ((gen-file (file-name-base (buffer-file-name))))
 	(shell-command (format "ginkgo generate %s" gen-file))))
