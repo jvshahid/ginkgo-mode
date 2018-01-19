@@ -84,11 +84,12 @@
 
 (defun ginkgo--run (&rest args)
   (save-selected-window
-	(let ((default-directory (concat (ginkgo--get-test-dir) "/"))
-		  (arg-string (mapconcat 'identity args " ")))
-	  (pop-to-buffer ginkgo-output-buffer)
-	  (async-shell-command (format "%s -noisyPendings=false %s" ginkgo-binary arg-string) ginkgo-output-buffer)
-	  (message (format "running \"ginkgo %s\" in dir %s" arg-string default-directory)))))
+	  (let ((dir (concat (ginkgo--get-test-dir) "/"))
+		      (arg-string (mapconcat 'identity args " ")))
+	    (pop-to-buffer ginkgo-output-buffer)
+      (let ((default-directory dir))
+	      (async-shell-command (format "%s -noisyPendings=false %s" ginkgo-binary arg-string) ginkgo-output-buffer)
+	      (message (format "running \"ginkgo %s\" in dir %s" arg-string default-directory))))))
 
 ;;;###autoload
 (defun ginkgo-run-all ()
