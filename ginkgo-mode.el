@@ -192,7 +192,7 @@
 
 (define-minor-mode ginkgo-mode
   "Minor mode for ginkgo"
-  :lighter (ginkgo--lighter)
+  :lighter (:eval (ginkgo--lighter))
   :keymap (ginkgo--make-keymap))
 
 (defun ginkgo-mode-on ()
